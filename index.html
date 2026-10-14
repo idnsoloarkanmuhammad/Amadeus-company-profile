@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amadeus | Official Website</title>
+
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Share+Tech+Mono&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <!-- Import AOS buat CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- ELEMEN KURSOR FUTURISTIK -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <nav class="navbar">
+        <!-- KIRI: Hamburger Menu -->
+        <div class="container-hamburger" id="hamburgerBtn" role="button" aria-expanded="false">
+            <button class="tombol-hamburger" aria-label="Toggle Menu">
+                <span class="garis"></span>
+                <span class="garis"></span>
+                <span class="garis"></span>
+            </button>
+            <h4>Menu</h4>
+        </div>
+
+        <!-- TENGAH: Logo SVG Amadeus -->
+        <a href="#home" class="logo" aria-label="Amadeus Home">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 36" width="200" height="26" fill="none">
+                <rect x="0" y="2" width="32" height="32" fill="#FFFFFF" />
+                <path d="M7 26 L16 8 L25 26 H20 L16 17 L12 26 H7 Z" fill="#0A0A0A" />
+                <polygon points="16,11 14,15 18,15" fill="#FFFFFF" />
+                <text x="46" y="26" fill="#FFFFFF" font-family="'Space Grotesk', 'Plus Jakarta Sans', sans-serif"
+                    font-size="19" font-weight="900" letter-spacing="7">AMADEUS</text>
+                <rect x="254" y="9" width="20" height="18" fill="#FFFFFF" />
+                <text x="257" y="22" fill="#0A0A0A" font-family="'Space Grotesk', sans-serif" font-size="10"
+                    font-weight="900">26</text>
+            </svg>
+        </a>
+
+        <!-- KANAN: Nav Right Wrap -->
+        <div class="nav-right">
+            <div class="weather-container">
+                <span class="status-label">LAB TEMP:</span>
+                <span id="labTemp" class="nixie-text">--°C</span>
+            </div>
+            <a href="#contact" class="btn-login">Let's Talk</a>
+        </div>
+    </nav>
+
+    <!-- MENU DROPDOWN LIQUID GLASS -->
+    <ul class="menu-navigasi" id="menuNav">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+
+    <main class="scroll-container">
+        <!-- PANEL 1: HERO SECTION -->
+        <section class="panel" id="home">
+            <video autoplay muted loop playsinline class="video-background">
+                <source src="gambar/cherry-blossom-neverness-to-everness-moewalls-com.mp4" type="video/mp4">
+            </video>
+
+            <!-- SISIPAN: 3D Model SVG #1 (Icosahedron Wireframe Hologram) -->
+            <div class="hero-3d-container model-1" aria-hidden="true">
+                <svg class="hologram-svg" viewBox="0 0 500 500" width="100%" height="100%">
+                    <defs>
+                        <linearGradient id="holoGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="var(--amadeus-cyan)" stop-opacity="0.8" />
+                            <stop offset="50%" stop-color="#ffffff" stop-opacity="0.3" />
+                            <stop offset="100%" stop-color="var(--amadeus-red)" stop-opacity="0.8" />
+                        </linearGradient>
+                    </defs>
+                    <g fill="none" stroke="url(#holoGradient1)" stroke-width="1.5">
+                        <polygon points="250,80 380,180 320,350 180,350 120,180" />
+                        <polygon points="250,130 330,200 290,310 210,310 170,200" stroke-dasharray="4 4" />
+                        <line x1="250" y1="80" x2="250" y2="350" opacity="0.6" />
+                        <line x1="120" y1="180" x2="320" y2="350" opacity="0.6" />
+                        <line x1="380" y1="180" x2="180" y2="350" opacity="0.6" />
+                    </g>
+                </svg>
+            </div>
+
+            <div class="hero-content">
+                <span class="hero-badge" data-aos="fade-down"> AMADEUS PRJCT. — CREATIVE STUDIO</span>
+                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">WE CRAFT BOLD
+                    DIGITAL EXPERIENCES.</h1>
+                <p class="hero-desc" data-aos="fade-up" data-aos-delay="400" data-aos-duration="900">
+                    <i>Amadeus PRJCT.</i> adalah studio independen yang merancang identitas visual, pengalaman web
+                    interaktif, dan solusi digital bernilai estetika tinggi.
+                </p>
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="600" data-aos-duration="900">
+                    <a href="#projects" class="btn-primary">Lihat Portfolio</a>
+                    <a href="#contact" class="btn-secondary">Mulai Proyek</a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- PANEL 2: ABOUT SECTION -->
+        <section class="panel bg-monochrome-2" id="about">
+            <!-- SISIPAN: 3D Model SVG #2 (Quantum Ring Background) -->
+            <div class="hero-3d-container model-2" aria-hidden="true">
+                <svg class="hologram-svg-rev" viewBox="0 0 500 500" width="100%" height="100%">
+                    <defs>
+                        <linearGradient id="holoGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="var(--amadeus-red)" stop-opacity="0.9" />
+                            <stop offset="100%" stop-color="var(--amadeus-cyan)" stop-opacity="0.2" />
+                        </linearGradient>
+                    </defs>
+                    <g fill="none" stroke="url(#holoGradient2)" stroke-width="1.5">
+                        <ellipse cx="250" cy="250" rx="180" ry="70" transform="rotate(30 250 250)" />
+                        <ellipse cx="250" cy="250" rx="180" ry="70" transform="rotate(-30 250 250)" />
+                        <circle cx="250" cy="250" r="80" stroke-dasharray="6 6" />
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Teks Marquee Berjalan -->
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span>CREATIVE STUDIO — DIGITAL ARCHITECTURE — AESTHETIC-DRIVEN DESIGN — FUTURE-PROOF TECH — </span>
+                    <span>CREATIVE STUDIO — DIGITAL ARCHITECTURE — AESTHETIC-DRIVEN DESIGN — FUTURE-PROOF TECH — </span>
+                </div>
+            </div>
+
+            <div class="section-content">
+                <span class="section-badge" data-aos="fade-up">WHO WE ARE</span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">THE ART OF DIGITAL ARCHITECTURE.</h2>
+                <p class="section-desc" data-aos="fade-up" data-aos-delay="200">
+                    Di Amadeus PRJCT., kami memadukan estetika visual minimalis dengan standar teknis modern untuk
+                    menciptakan pengalaman web yang responsif dan bernapas.
+                </p>
+                <div class="about-grid">
+                    <!-- Card 1 -->
+                    <div class="about-card" role="button" tabindex="0" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-header">
+                            <span class="card-num">01</span>
+                            <h3>Aesthetic-Driven Design</h3>
+                            <p>Detail visual dirancang presisi untuk memancarkan identitas unik brand kamu tanpa
+                                mengikuti tren pasaran.</p>
+                        </div>
+                        <div class="card-expand">
+                            <div class="card-expand-content">
+                                <p>Kami menganalisis nilai utama perusahaan dan audiens sasaran kamu untuk menciptakan
+                                    sistem desain yang autentik. Mulai dari pemetaan tipografi, palet warna kustom,
+                                    hingga tata letak grid modern yang memperkuat citra profesional brand di ranah
+                                    digital.</p>
+                            </div>
+                        </div>
+                        <span class="card-toggle-icon">+</span>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="about-card" role="button" tabindex="0" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card-header">
+                            <span class="card-num">02</span>
+                            <h3>Seamless Interaction</h3>
+                            <p>Animasi mikro yang halus dan fungsi interaktif yang intuitif tanpa mengorbankan kecepatan
+                                beban halaman.</p>
+                        </div>
+                        <div class="card-expand">
+                            <div class="card-expand-content">
+                                <p>Pengalaman pengguna (UX) adalah fokus utama kami. Setiap mikro-interaksi, transisi
+                                    halaman, dan responsivitas tombol dioptimalkan agar memberikan umpan balik visual
+                                    yang menyenangkan bagi pengunjung tanpa memperberat kinerja sistem.</p>
+                            </div>
+                        </div>
+                        <span class="card-toggle-icon">+</span>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="about-card" role="button" tabindex="0" data-aos="fade-up" data-aos-delay="500">
+                        <div class="card-header">
+                            <span class="card-num">03</span>
+                            <h3>Future-Proof Tech</h3>
+                            <p>Dioptimalkan menggunakan standar web modern terkini agar tetap responsif dan stabil di
+                                segala jenis perangkat.</p>
+                        </div>
+                        <div class="card-expand">
+                            <div class="card-expand-content">
+                                <p>Arsitektur kode dirancang bersih, modular, dan mematuhi standar SEO serta
+                                    aksesibilitas (WCAG). Website perusahaan kamu dipastikan siap menghadapi
+                                    perkembangan teknologi web mendatang serta mudah dipelihara jangka panjang.</p>
+                            </div>
+                        </div>
+                        <span class="card-toggle-icon">+</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL SERVICES SECTION -->
+        <section class="panel bg-monochrome-3 liquid-section" id="services">
+            <!-- Background Animasi Liquid untuk Efek Kaca -->
+            <div class="liquid-bg-blobs">
+                <div class="liquid-blob blob-1"></div>
+                <div class="liquid-blob blob-2"></div>
+            </div>
+
+            <!-- SISIPAN: 3D Model SVG #3 (Cyber Core Grid Background) -->
+            <div class="hero-3d-container model-3" aria-hidden="true">
+                <svg class="hologram-svg-fast" viewBox="0 0 500 500" width="100%" height="100%">
+                    <defs>
+                        <linearGradient id="holoGradient3" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6" />
+                            <stop offset="100%" stop-color="var(--amadeus-cyan)" stop-opacity="0.8" />
+                        </linearGradient>
+                    </defs>
+                    <g fill="none" stroke="url(#holoGradient3)" stroke-width="1.2">
+                        <rect x="150" y="150" width="200" height="200" rx="20" transform="rotate(45 250 250)" />
+                        <rect x="180" y="180" width="140" height="140" rx="10" stroke-dasharray="8 4" />
+                        <circle cx="250" cy="250" r="15" fill="var(--amadeus-cyan)" />
+                    </g>
+                </svg>
+            </div>
+
+            <div class="section-content">
+                <span class="section-badge" data-aos="fade-up">OUR CAPABILITIES</span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">WHAT WE DO BEST.</h2>
+                <p class="section-desc" data-aos="fade-up" data-aos-delay="200">Solusi digital komprehensif yang
+                    dirancang untuk mengangkat nilai estetika dan skala bisnis brand Anda.</p>
+
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card liquid-glass-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-icon">01</div>
+                        <h3>Web Architecture & Development</h3>
+                        <p>Pengembangan situs web modern yang responsif, cepat, dan aman menggunakan arsitektur kode
+                            bersih serta animasi interaktif tingkat tinggi.</p>
+                        <ul class="service-list">
+                            <li>Custom Frontend Development</li>
+                            <li>Web Performance Optimization</li>
+                            <li>Interactive Animations</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card liquid-glass-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="service-icon">02</div>
+                        <h3>UI/UX & Product Design</h3>
+                        <p>Merancang antarmuka pengguna yang memanjakan mata sekaligus memberikan pengalaman eksplorasi
+                            yang intuitif tanpa hambatan.</p>
+                        <ul class="service-list">
+                            <li>Design Systems</li>
+                            <li>User Journey Mapping</li>
+                            <li>Wireframing & Prototyping</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card liquid-glass-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="service-icon">03</div>
+                        <h3>Digital Brand Identity</h3>
+                        <p>Membantu merek menetapkan identitas visual yang unik, konsisten, dan menonjol di tengah
+                            persaingan industri digital.</p>
+                        <ul class="service-list">
+                            <li>Visual Identity Guidelines</li>
+                            <li>Typography & Palette Curation</li>
+                            <li>Digital Asset Creation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PANEL PROCESS SECTION (macOS Mini Interactive Theme) -->
+        <section class="panel bg-monochrome-2 macos-mini-section" id="process">
+            <!-- SISIPAN: 3D Model SVG #4 (Orbital Helix Grid Background) -->
+            <div class="hero-3d-container model-4" aria-hidden="true">
+                <svg class="hologram-svg" viewBox="0 0 500 500" width="100%" height="100%">
+                    <defs>
+                        <linearGradient id="holoGradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="var(--amadeus-cyan)" stop-opacity="0.8" />
+                            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2" />
+                        </linearGradient>
+                    </defs>
+                    <g fill="none" stroke="url(#holoGradient4)" stroke-width="1.2">
+                        <circle cx="250" cy="250" r="180" stroke-dasharray="12 6" />
+                        <circle cx="250" cy="250" r="130" />
+                        <polygon points="250,70 400,250 250,430 100,250" stroke-dasharray="4 4" />
+                        <polygon points="250,120 370,250 250,380 130,250" />
+                        <circle cx="250" cy="70" r="5" fill="var(--amadeus-cyan)" />
+                        <circle cx="250" cy="430" r="5" fill="var(--amadeus-red)" />
+                    </g>
+                </svg>
+            </div>
+            <div class="section-content">
+                <span class="section-badge" data-aos="fade-up">WORKFLOW</span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">HOW WE EXECUTE.</h2>
+                <p class="section-desc" data-aos="fade-up" data-aos-delay="200">Eksplorasi tahapan kerja interaktif
+                    dengan kontrol jendela mini bergaya sistem operasi desktop masa depan.</p>
+
+                <!-- Container Jendela macOS Mini -->
+                <div class="macos-mini-grid">
+
+                    <!-- Step 1 -->
+                    <div class="macos-mini-window" data-aos="fade-up" data-aos-delay="300">
+                        <div class="mini-titlebar">
+                            <div class="mini-traffic-lights">
+                                <button class="mini-dot red" title="Close"></button>
+                                <button class="mini-dot yellow" title="Minimize"></button>
+                                <button class="mini-dot green" title="Fullscreen"></button>
+                            </div>
+                            <span class="mini-window-title">phase-01.swift</span>
+                        </div>
+                        <div class="mini-content">
+                            <div class="mini-body-inner">
+                                <div class="mini-step-badge">01</div>
+                                <h3>Discovery & Strategy</h3>
+                                <p>Menganalisis kebutuhan bisnis, menentukan tujuan utama, serta memetakan strategi
+                                    arsitektur teknis.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="macos-mini-window" data-aos="fade-up" data-aos-delay="400">
+                        <div class="mini-titlebar">
+                            <div class="mini-traffic-lights">
+                                <button class="mini-dot red" title="Close"></button>
+                                <button class="mini-dot yellow" title="Minimize"></button>
+                                <button class="mini-dot green" title="Fullscreen"></button>
+                            </div>
+                            <span class="mini-window-title">phase-02.swift</span>
+                        </div>
+                        <div class="mini-content">
+                            <div class="mini-body-inner">
+                                <div class="mini-step-badge">02</div>
+                                <h3>Design & Prototype</h3>
+                                <p>Merancang kerangka visual, tipografi, serta prototipe interaktif bernuansa sistem
+                                    operasi modern.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="macos-mini-window" data-aos="fade-up" data-aos-delay="500">
+                        <div class="mini-titlebar">
+                            <div class="mini-traffic-lights">
+                                <button class="mini-dot red" title="Close"></button>
+                                <button class="mini-dot yellow" title="Minimize"></button>
+                                <button class="mini-dot green" title="Fullscreen"></button>
+                            </div>
+                            <span class="mini-window-title">phase-03.swift</span>
+                        </div>
+                        <div class="mini-content">
+                            <div class="mini-body-inner">
+                                <div class="mini-step-badge">03</div>
+                                <h3>Development & Code</h3>
+                                <p>Menerjemahkan rancangan visual menjadi kode yang bersih, responsif, dan performa
+                                    tinggi.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="macos-mini-window" data-aos="fade-up" data-aos-delay="600">
+                        <div class="mini-titlebar">
+                            <div class="mini-traffic-lights">
+                                <button class="mini-dot red" title="Close"></button>
+                                <button class="mini-dot yellow" title="Minimize"></button>
+                                <button class="mini-dot green" title="Fullscreen"></button>
+                            </div>
+                            <span class="mini-window-title">phase-04.swift</span>
+                        </div>
+                        <div class="mini-content">
+                            <div class="mini-body-inner">
+                                <div class="mini-step-badge">04</div>
+                                <h3>Deployment & Launch</h3>
+                                <p>Peluncuran situs web ke server produksi dengan pengawasan stabilitas sistem secara
+                                    berkala.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 3: PROJECTS SECTION -->
+        <section class="panel bg-monochrome-3" id="projects">
+            <div class="section-content">
+                <span class="section-badge" data-aos="fade-up">SELECTED WORKS</span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">FEATURED PROJECT.</h2>
+                <p class="section-desc" data-aos="fade-up" data-aos-delay="200">Eksplorasi portofolio utama yang
+                    menampilkan identitas visual, arsitektur web modern, dan pengalaman digital interaktif.</p>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid single-project">
+                    <!-- Project Card Main -->
+                    <div class="project-card" data-aos="zoom-in-up" data-aos-delay="300">
+                        <div class="project-preview">
+                            <div class="preview-overlay">
+                                <span class="preview-badge">PRIMARY PORTFOLIO</span>
+                            </div>
+                            <img src="gambar/foto-web-portofolio.png" alt="Arkan Muhammad Portofolio Showcase"
+                                class="project-img">
+                        </div>
+                        <div class="project-info">
+                            <div class="project-meta">
+                                <span class="project-tag">PERSONAL PORTFOLIO / WEB EXPERIENCE</span>
+                                <span class="project-year">2026</span>
+                            </div>
+                            <h3>ARKAN MUHAMMAD PORTFOLIO</h3>
+                            <p>Official interactive personal portfolio website showcase featuring modern UI/UX design,
+                                smooth interaction, and clean digital architecture.</p>
+                            <div class="tech-stack">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                                <span>Vercel</span>
+                            </div>
+                            <a href="https://portofolio-website-arkan-muhammad.vercel.app/" target="_blank"
+                                rel="noopener noreferrer" class="project-link">
+                                Visit Portfolio Website &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PANEL 4: CONTACT SECTION -->
+        <section class="panel bg-monochrome-4" id="contact">
+            <!-- SISIPAN: 3D Model SVG #5 (Cyber Radar Core Background) -->
+            <div class="hero-3d-container model-5" aria-hidden="true">
+                <svg class="hologram-svg-rev" viewBox="0 0 500 500" width="100%" height="100%">
+                    <defs>
+                        <linearGradient id="holoGradient5" x1="100%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" stop-color="var(--amadeus-red)" stop-opacity="0.8" />
+                            <stop offset="100%" stop-color="var(--amadeus-cyan)" stop-opacity="0.3" />
+                        </linearGradient>
+                    </defs>
+                    <g fill="none" stroke="url(#holoGradient5)" stroke-width="1.5">
+                        <circle cx="250" cy="250" r="200" stroke-dasharray="2 8" />
+                        <circle cx="250" cy="250" r="150" />
+                        <line x1="50" y1="250" x2="450" y2="250" stroke-dasharray="6 6" />
+                        <line x1="250" y1="50" x2="250" y2="450" stroke-dasharray="6 6" />
+                        <rect x="200" y="200" width="100" height="100" transform="rotate(45 250 250)" />
+                    </g>
+                </svg>
+            </div>
+            <div class="section-content">
+                <span class="section-badge" data-aos="fade-up">GET IN TOUCH</span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">LET’S BUILD SOMETHING EXTRAORDINARY.
+                </h2>
+                <p class="section-desc" data-aos="fade-up" data-aos-delay="200">Punya ide proyek menarik atau ingin
+                    berdiskusi mengenai transformasi digital brand kamu? Pintu studio kami selalu terbuka.</p>
+
+                <div class="contact-wrapper">
+                    <div class="contact-info" data-aos="fade-right" data-aos-delay="300">
+                        <div class="info-block">
+                            <h4>Start a Conversation</h4>
+                            <p><a href="mailto:idnsoloarkanmuhammad@gmail.com">idnsoloarkanmuhammad@gmail.com</a></p>
+                        </div>
+                        <div class="info-block">
+                            <h4>Visit Our Studio</h4>
+                            <p>IDN Boarding School Solo
+                                Tambak, Berjo, Kec. Ngargoyoso, Kabupaten Karanganyar, Jawa Tengah 57793
+                                <br>Karanganyar, Indonesia
+                            </p>
+                        </div>
+                        <div class="info-block">
+                            <h4>Socials</h4>
+                            <div class="social-links">
+                                <a href="https://ig.me/m/arkaaaaaaaaaaannotavailable" target="_blank"
+                                    rel="noopener noreferrer">Instagram</a>
+                                <a href="https://www.linkedin.com/in/arkan-muhammad-k-putra-b32043434/?isSelfProfile=true" target="_blank"
+                                rel="noopener noreferrer">LinkedIn</a>
+                                <a href="#">Behance</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" onsubmit="event.preventDefault();" data-aos="fade-left"
+                        data-aos-delay="400">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Project Type (e.g. Web Design, Branding)">
+                        <textarea rows="4" placeholder="Message / Project Overview" required></textarea>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER LENGKAP -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#home" class="footer-logo">AMADEUS PRJCT.</a>
+                <p>Digital Architecture & Creative Studio. Crafting bold experiences for tomorrow.</p>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">AVAILABLE FOR NEW PROJECTS</span>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h5>Navigation</h5>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#process">Process</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Socials</h5>
+                    <ul>
+                        <li><a href="https://ig.me/m/arkaaaaaaaaaaannotavailable" target="_blank"
+                                rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com/in/arkan-muhammad-k-putra-b32043434/?isSelfProfile=true" target="_blank"
+                                rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="#">Behance</a></li>
+                        <li><a href="https://github.com/idnsoloarkanmuhammad" target="_blank"
+                                rel="noopener noreferrer">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 AMADEUS PRJCT. All rights reserved.</p>
+            <p class="footer-credit">Designed & Developed by Arkan Muhammad</p>
+        </div>
+    </footer>
+
+    <!-- Import AOS JS Script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js.js"></script>
+
+
+
+
+</body>
+
+</html>

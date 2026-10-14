@@ -1,0 +1,1453 @@
+/* ==========================================================================
+   1. ROOT & VARIABEL (COLOR PALETTE & FONTS)
+   ========================================================================== */
+:root {
+    /* Fonts */
+    --font-primary: 'Space Grotesk', sans-serif;
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-nixie: 'Share Tech Mono', monospace;
+
+    /* Color Palette */
+    --bg-main: #0a0a0a;
+    --bg-panel-2: #121212;
+    --bg-panel-3: #161618;
+    --bg-menu: #1a1a1a;
+    --bg-nav: rgba(10, 10, 10, 0.7);
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --hover-btn: rgba(255, 255, 255, 0.1);
+
+    /* Steins;Gate Theme Accent */
+    --amadeus-red: #ff3333;
+    --amadeus-glow: rgba(255, 51, 51, 0.4);
+    --amadeus-cyan: #00f0ff;
+}
+
+/* ==========================================================================
+   2. RESET & GLOBAL STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Sembunyikan kursor asli di desktop */
+    cursor: none !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+}
+
+/* ==========================================================================
+   STYLING KURSOR FUTURISTIK
+   ========================================================================== */
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--amadeus-cyan);
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate3d(-50%, -50%, 0);
+    box-shadow: 0 0 10px var(--amadeus-cyan);
+    transition: background-color 0.3s ease;
+}
+
+.cursor-ring {
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999998;
+    transform: translate3d(-50%, -50%, 0);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Kursor Hover State */
+.cursor-ring.hovered {
+    width: 64px;
+    height: 64px;
+    background-color: rgba(255, 51, 51, 0.1);
+    border-color: var(--amadeus-red);
+    box-shadow: 0 0 20px var(--amadeus-glow);
+    backdrop-filter: blur(2px);
+}
+
+.cursor-dot.hovered {
+    background-color: var(--amadeus-red);
+    box-shadow: 0 0 12px var(--amadeus-red);
+}
+
+/* Matikan kursor kustom jika di perangkat layar sentuh (mobile/tablet) */
+@media (pointer: coarse) {
+    * {
+        cursor: auto !important;
+    }
+
+    .cursor-dot,
+    .cursor-ring {
+        display: none !important;
+    }
+}
+
+/* Menghilangkan kontrol bawaan browser di Chrome, Safari, dan Edge */
+.video-background::-webkit-media-controls {
+    display: none !important;
+}
+
+.video-background {
+    pointer-events: none;
+    /* Membuat video tidak bisa diklik oleh user */
+}
+
+
+/* ==========================================================================
+   3. NAVBAR & HEADER
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--bg-nav);
+    backdrop-filter: blur(8px);
+    padding: 16px 24px;
+    z-index: 99999 !important;
+}
+
+.logo {
+    transition: transform 0.15s ease, filter 0.15s ease;
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo:hover {
+    transform: translate(-2px, -2px);
+    filter: drop-shadow(3px 3px 0px rgba(255, 255, 255, 0.3));
+}
+
+.logo svg {
+    height: auto;
+    display: block;
+}
+
+.container-hamburger {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 16px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.container-hamburger:hover {
+    background-color: var(--hover-btn);
+}
+
+.container-hamburger h4 {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.tombol-hamburger {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0;
+}
+
+.garis {
+    width: 14px;
+    height: 1px;
+    background-color: var(--text-primary);
+    transition: 0.3s ease;
+}
+
+.tombol-hamburger.aktif .garis:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+}
+
+.tombol-hamburger.aktif .garis:nth-child(2) {
+    opacity: 0;
+}
+
+.tombol-hamburger.aktif .garis:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
+}
+
+.nav-right {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.weather-container {
+    display: flex;
+    gap: 16px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 51, 51, 0.2);
+}
+
+.status-label {
+    font-family: var(--font-primary);
+    font-size: 0.65rem;
+    color: #888888;
+    margin-right: 4px;
+}
+
+.nixie-text {
+    font-family: var(--font-nixie);
+    color: var(--amadeus-red);
+    font-size: 0.85rem;
+    text-shadow: 0 0 6px var(--amadeus-glow);
+    font-weight: bold;
+}
+
+.btn-login {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 8px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: transparent;
+    transition: all 0.25s ease;
+}
+
+.btn-login:hover {
+    background-color: #ffffff;
+    color: #0a0a0a;
+    border-color: #ffffff;
+}
+
+/* ==========================================================================
+   4. MENU NAVIGASI (LIQUID GLASS)
+   ========================================================================== */
+.menu-navigasi {
+    position: fixed;
+    top: 90px;
+    left: 24px;
+    right: 24px;
+    width: calc(100% - 48px);
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgba(18, 18, 18, 0.55);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden;
+    padding: 12px 0;
+    z-index: 99998 !important;
+    opacity: 0;
+    transform: translateY(-15px) scale(0.96);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menu-navigasi.aktif {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.menu-navigasi li a {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: block;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.25s ease;
+}
+
+.menu-navigasi li:last-child a {
+    border-bottom: none;
+}
+
+.menu-navigasi li a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    padding-left: 28px;
+}
+
+.menu-navigasi li a.aktif,
+.menu-navigasi li a.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    border-left: 3px solid var(--amadeus-red, #ff3333);
+}
+
+/* ==========================================================================
+   5. STICKY PANEL & CONTENT LAYOUT
+   ========================================================================== */
+.scroll-container {
+    width: 100%;
+    background-color: var(--bg-main);
+}
+
+.panel {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 24px 60px;
+    background-size: 100% 100%;
+    margin-bottom: -1px;
+    /* Mencegah celah garis 1px antar section */
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.6);
+}
+
+/* Background Warna Panel & Gradient Transisi Seamless Antar Section */
+#home {
+    background-color: var(--bg-main);
+    background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0) 70%, #111111 100%);
+    z-index: 1;
+}
+
+.bg-monochrome-2,
+#about,
+#process {
+    background-color: var(--bg-main);
+    background-image: linear-gradient(to bottom, #111111 80%, #161618 100%);
+    z-index: 2;
+}
+
+.bg-monochrome-3,
+#services,
+#projects {
+    background-color: var(--bg-panel-3);
+    background-image: linear-gradient(to bottom, #161618 80%, #111111 100%);
+    z-index: 3;
+}
+
+.bg-monochrome-4,
+#contact {
+    background-color: #0d0d0f;
+    z-index: 4;
+}
+
+.section-content {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-badge {
+    font-family: var(--font-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.6);
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.section-desc {
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 36px;
+}
+
+/* Hero Content */
+.hero-content {
+    text-align: center;
+    max-width: 900px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-badge {
+    font-family: var(--font-nixie);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--amadeus-red);
+    border: 1px solid rgba(255, 51, 51, 0.3);
+    padding: 6px 11px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    background: rgba(255, 51, 51, 0.05);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px 10px var(--amadeus-glow);
+}
+
+.hero-title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.hero-desc {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 620px;
+    margin-bottom: 36px;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Buttons */
+.btn-primary {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #0a0a0a;
+    background-color: #ffffff;
+    padding: 12px 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    border: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e2e2e2;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 12px 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   6. ABOUT SECTION COMPONENTS
+   ========================================================================== */
+#about {
+    position: relative;
+    /* Transisi background gradient dari #111111 melebur ke #161618 */
+    background-color: var(--bg-main);
+    background-image:
+        linear-gradient(to bottom, #111111 80%, #161618 100%),
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    overflow: hidden;
+    padding-top: 120px;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 25s linear infinite;
+}
+
+.marquee-content span {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: #ffffff;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 32px 24px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.3s ease, background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.card-num {
+    font-family: var(--font-nixie);
+    font-size: 0.85rem;
+    color: var(--amadeus-red);
+    display: block;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+.about-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.about-card p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.card-expand {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-expand-content {
+    overflow: hidden;
+}
+
+.card-expand-content p {
+    padding-top: 16px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    margin-top: 16px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.card-toggle-icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.about-card.open {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.about-card.open .card-expand {
+    grid-template-rows: 1fr;
+}
+
+.about-card.open .card-toggle-icon {
+    transform: rotate(45deg);
+    color: var(--amadeus-red);
+}
+
+/* ==========================================================================
+   LIQUID SECTION BACKGROUND & ANIMATED BLOBS (SERVICES)
+   ========================================================================== */
+.liquid-section {
+    position: relative;
+    overflow: hidden;
+    /* Seamless background transition dari #161618 melebur ke #111111 */
+    background-color: var(--bg-panel-3);
+    background-image: linear-gradient(to bottom, #161618 80%, #111111 100%);
+}
+
+.liquid-bg-blobs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(70px);
+    opacity: 0.45;
+}
+
+.liquid-blob {
+    position: absolute;
+    border-radius: 50%;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+.liquid-blob.blob-1 {
+    width: 350px;
+    height: 350px;
+    background: #ffffff;
+    top: 10%;
+    left: 15%;
+    animation: moveLiquid1 14s infinite;
+}
+
+.liquid-blob.blob-2 {
+    width: 400px;
+    height: 400px;
+    background: #555555;
+    bottom: 5%;
+    right: 15%;
+    animation: moveLiquid2 18s infinite;
+}
+
+@keyframes moveLiquid1 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(120px, 80px) scale(1.25);
+    }
+
+    100% {
+        transform: translate(-80px, 140px) scale(0.9);
+    }
+}
+
+@keyframes moveLiquid2 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-140px, -100px) scale(1.3);
+    }
+
+    100% {
+        transform: translate(100px, -120px) scale(0.85);
+    }
+}
+
+.liquid-section .section-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   9. SERVICES SECTION (LIQUID GLASS STYLE)
+   ========================================================================== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    text-align: left;
+    margin-top: 30px;
+}
+
+.service-card.liquid-glass-card {
+    background: rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 36px 28px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s ease,
+        box-shadow 0.4s ease,
+        background 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card.liquid-glass-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    background: rgba(255, 255, 255, 0.045);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+.service-icon {
+    font-family: var(--font-nixie);
+    font-size: 1.2rem;
+    color: var(--amadeus-cyan);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.service-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.service-card p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.service-list {
+    list-style: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 16px;
+}
+
+.service-list li {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 14px;
+}
+
+.service-list li::before {
+    content: "•";
+    color: var(--amadeus-red);
+    position: absolute;
+    left: 0;
+}
+
+/* ==========================================================================
+   MACOS MINI WINDOWS & PROCESS SECTION
+   ========================================================================== */
+.macos-mini-section {
+    position: relative;
+    /* Smooth background melebur dari #111111 ke #161618 */
+    background-color: var(--bg-main, #0a0a0a);
+    background-image:
+        linear-gradient(to bottom, #111111 80%, #161618 100%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 24px 24px, 24px 24px;
+    overflow: hidden;
+}
+
+.macos-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 35px;
+    text-align: left;
+}
+
+/* Kartu Jendela Mini */
+.macos-mini-window {
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transform-origin: center center;
+    will-change: transform, opacity, max-height;
+    /* Gabungan properti transition agar tidak tertimpa */
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease,
+                box-shadow 0.35s ease,
+                grid-column 0.35s ease;
+}
+
+.macos-mini-grid:hover .macos-mini-window:not(.is-minimized):not(.is-maximized):not(.is-closed) {
+    opacity: 0.45;
+}
+
+.macos-mini-window:hover {
+    opacity: 1 !important;
+    transform: translateY(-6px) scale(1.015);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                0 0 20px rgba(255, 255, 255, 0.04);
+}
+
+.mini-titlebar {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.015);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mini-traffic-lights {
+    display: flex;
+    gap: 6px;
+}
+
+.mini-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.mini-dot:hover {
+    transform: scale(1.2);
+    filter: brightness(1.25);
+}
+
+.mini-dot.red {
+    background-color: #ff5f56;
+}
+
+.mini-dot.yellow {
+    background-color: #ffbd2e;
+}
+
+.mini-dot.green {
+    background-color: #27c93f;
+}
+
+.mini-window-title {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.35);
+    font-family: monospace;
+}
+
+.mini-content {
+    max-height: 400px;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.25s ease-in-out;
+}
+
+.mini-body-inner {
+    padding: 20px 18px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.mini-step-badge {
+    font-family: var(--font-nixie, sans-serif);
+    font-size: 0.75rem;
+    color: var(--amadeus-red, #ff3b30);
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.mini-body-inner h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    color: var(--text-primary, #ffffff);
+    font-weight: 600;
+}
+
+.mini-body-inner p {
+    font-size: 0.83rem;
+    color: var(--text-secondary, #999999);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* STATE INTERAKTIF (CLOSE, MINIMIZE, FULLSCREEN) */
+.macos-mini-window.is-minimized .mini-content {
+    max-height: 0 !important;
+}
+
+.macos-mini-window.is-minimized .mini-body-inner {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+}
+
+.macos-mini-window.is-closed {
+    opacity: 0 !important;
+    transform: scale(0.7) translateY(20px) !important;
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s ease;
+}
+
+.macos-mini-window.is-maximized {
+    grid-column: 1 / -1;
+    transform: scale(1.01);
+}
+
+.macos-mini-window.is-maximized.is-minimized {
+    grid-column: auto;
+}
+/* ==========================================================================
+   7. PROJECTS SECTION
+   ========================================================================== */
+#projects {
+    /* Smooth background melebur dari #161618 ke #0d0d0f */
+    background-color: var(--bg-panel-3);
+    background-image:
+        linear-gradient(to bottom, #161618 80%, #0d0d0f 100%),
+        radial-gradient(circle at 80% 20%, rgba(255, 51, 51, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
+    background-size: 100% 100%, auto, auto;
+}
+
+.projects-grid.single-project {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.project-card {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.project-preview {
+    position: relative;
+    height: 240px;
+    background: #0d0d0d;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.05);
+}
+
+.preview-overlay {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+}
+
+.preview-badge {
+    font-family: var(--font-nixie);
+    font-size: 0.65rem;
+    color: var(--amadeus-red);
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 51, 51, 0.3);
+    padding: 4px 10px;
+    border-radius: 12px;
+    letter-spacing: 1px;
+}
+
+.project-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.project-tag {
+    font-family: var(--font-primary);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1.5px;
+}
+
+.project-year {
+    font-family: var(--font-nixie);
+    font-size: 0.75rem;
+    color: var(--amadeus-red);
+}
+
+.project-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.project-card p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.tech-stack {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.tech-stack span {
+    font-size: 0.7rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.project-link:hover {
+    color: var(--amadeus-red);
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   8. CONTACT SECTION COMPONENTS
+   ========================================================================== */
+#contact {
+    /* Smooth transition ke area paling bawah/footer */
+    background-color: #0d0d0f;
+    background-image: linear-gradient(to bottom, #0d0d0f 80%, #060607 100%);
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    text-align: left;
+    align-items: start;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info-block h4 {
+    font-size: 0.85rem;
+    font-family: var(--font-primary);
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.info-block p,
+.info-block a {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+}
+
+.social-links a {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+    color: #ffffff;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   11. FOOTER SECTION
+   ========================================================================== */
+.site-footer {
+    background-color: #060607;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 60px 24px 30px;
+    color: var(--text-secondary);
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-brand .footer-logo {
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.footer-brand p {
+    font-size: 0.88rem;
+    max-width: 380px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff88;
+}
+
+.status-text {
+    font-family: var(--font-nixie);
+    font-size: 0.7rem;
+    color: #00ff88;
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 60px;
+}
+
+.footer-col h5 {
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    color: #ffffff;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.2s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   PENAMBAHAN 3D SVG & FULL LIQUID GLASS INTERAKTIF
+   ========================================================================== */
+
+/* 1. Posisi dan Ukuran Responsive untuk 3 Model 3D SVG */
+.hero-3d-container {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.35;
+    filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.25));
+    transition: transform 0.1s ease-out;
+}
+
+/* Model #1: Di Tengah Hero Section */
+.hero-3d-container.model-1 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(450px, 80vw);
+    height: min(450px, 80vw);
+}
+
+/* Model #2: Di Pojok Kanan Atas About Section */
+.hero-3d-container.model-2 {
+    top: 15%;
+    right: 5%;
+    width: min(320px, 60vw);
+    height: min(320px, 60vw);
+    opacity: 0.25;
+}
+
+/* Model #3: Di Kiri Bawah Services Section */
+.hero-3d-container.model-3 {
+    bottom: 10%;
+    left: 5%;
+    width: min(350px, 60vw);
+    height: min(350px, 60vw);
+    opacity: 0.3;
+}
+
+/* Model #4: Di Process Section (Samping Kanan Atas) */
+.hero-3d-container.model-4 {
+    top: 10%;
+    right: 4%;
+    width: min(340px, 65vw);
+    height: min(340px, 65vw);
+    opacity: 0.22;
+}
+
+/* Model #5: Di Contact Section (Samping Kiri Bawah) */
+.hero-3d-container.model-5 {
+    bottom: 8%;
+    left: 4%;
+    width: min(360px, 70vw);
+    height: min(360px, 70vw);
+    opacity: 0.25;
+}
+
+/* Responsivitas Mobile untuk Model Baru */
+@media (max-width: 768px) {
+    .hero-3d-container.model-4,
+    .hero-3d-container.model-5 {
+        display: none; /* Disembunyikan pada layar HP agar tampilan tetap bersih */
+    }
+}
+
+/* 2. Animasi Rotasi Kontinu 3D SVG */
+.hologram-svg {
+    animation: rotateHolo 25s linear infinite;
+    transform-origin: center;
+}
+
+.hologram-svg-rev {
+    animation: rotateHoloRev 30s linear infinite;
+    transform-origin: center;
+}
+
+.hologram-svg-fast {
+    animation: rotateHolo 18s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotateHolo {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.05); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes rotateHoloRev {
+    0% { transform: rotate(360deg) scale(1); }
+    50% { transform: rotate(180deg) scale(0.95); }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+/* Responsivitas Layar Kecil (Mobile) */
+@media (max-width: 768px) {
+    .hero-3d-container.model-2,
+    .hero-3d-container.model-3 {
+        display: none; /* Disembunyikan di ponsel agar teks tidak tertutup */
+    }
+    .hero-3d-container.model-1 {
+        width: 280px;
+        height: 280px;
+        opacity: 0.2;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .weather-container {
+        display: none;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .macos-mini-grid {
+        grid-template-columns: 1fr;
+    }
+}
