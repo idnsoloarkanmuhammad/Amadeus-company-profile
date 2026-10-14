@@ -493,14 +493,56 @@
                         </div>
                     </div>
 
-                    <form class="contact-form" onsubmit="event.preventDefault();" data-aos="fade-left"
-                        data-aos-delay="400">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="text" placeholder="Project Type (e.g. Web Design, Branding)">
-                        <textarea rows="4" placeholder="Message / Project Overview" required></textarea>
-                        <button type="submit" class="btn-primary">Send Message</button>
+                    <form id="contactForm" class="contact-form" data-aos="fade-left" data-aos-delay="400">
+                        <input type="text" id="from_name" placeholder="Your Name" required>
+                        <input type="email" id="from_email" placeholder="Your Email" required>
+                        <input type="text" id="project_type" placeholder="Project Type (e.g. Web Design, Branding)">
+                        <textarea id="message" rows="4" placeholder="Message / Project Overview" required></textarea>
+                        <button type="submit" id="submitBtn" class="btn-primary">Send Message</button>
                     </form>
+                    <!-- Muat SDK EmailJS -->
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+                    <script type="text/javascript">
+                        // Inisialisasi EmailJS dengan Public Key Anda
+                        (function() {
+                            emailjs.init({
+                                publicKey: "y_8pchUOw_NVWvDAb", // Ganti dengan Public Key EmailJS Anda
+                            });
+                        })();
+
+                        const contactForm = document.getElementById('contactForm');
+                        const submitBtn = document.getElementById('submitBtn');
+
+                        contactForm.addEventListener('submit', function(event) {
+                            event.preventDefault();
+
+                            // Ubah teks tombol saat mengirim
+                            submitBtn.textContent = "Sending...";
+                            submitBtn.disabled = true;
+
+                            // Ambil data dari input form
+                            const templateParams = {
+                                from_name: document.getElementById('from_name').value,
+                                from_email: document.getElementById('from_email').value,
+                                project_type: document.getElementById('project_type').value,
+                                message: document.getElementById('message').value
+                            };
+
+                            // Kirim menggunakan EmailJS
+                            emailjs.send('service_i9opi57', 'template_j35rreb', templateParams)
+                                .then(function(response) {
+                                    alert('Pesan berhasil terkirim!');
+                                    contactForm.reset();
+                                    submitBtn.textContent = "Send Message";
+                                    submitBtn.disabled = false;
+                                }, function(error) {
+                                    alert('Gagal mengirim pesan, silahkan coba lagi nanti.');
+                                    console.error('FAILED...', error);
+                                    submitBtn.textContent = "Send Message";
+                                    submitBtn.disabled = false;
+                                });
+                        });
+                    </script>
                 </div>
             </div>
         </section>
